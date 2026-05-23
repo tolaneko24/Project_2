@@ -29,13 +29,6 @@
 // Vì ta dùng temp_x10, 50.0 C = 500
 #define FIRE_THRESHOLD_X10 330
 
-
-
-// ================= NGOẠI VI ADC =================
-void ADC_Init(void);
-uint16_t ADC_Read(uint8_t channel);
-uint16_t ADC_Read_Avg(uint8_t channel);
-
 // ================= MÁY TRẠNG THÁI HỮU HẠN =================
 typedef enum {
     STATE_LOADING,
