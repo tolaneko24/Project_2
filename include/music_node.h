@@ -1,4 +1,4 @@
-#ifdef  MUSIC_NOTE_H
+#ifndef MUSIC_NOTE_H
 #define MUSIC_NOTE_H
 
 // TẦN SỐ CỦA CÁC NỐT NHẠC ĐƯỢC SỬ DỤNG
