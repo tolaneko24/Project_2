@@ -1,6 +1,7 @@
-#ifdef  TWI_H
+#ifndef TWI_H
 #define TWI_H
 
+#include <avr/io.h>
 // ================= NGOẠI VI GIAO TIẾP I2C (TWI) =================
 void I2C_Init(void);
 void I2C_Start(void);
