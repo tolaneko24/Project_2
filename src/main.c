@@ -1,4 +1,9 @@
 #include "set_up.h"
+#include "ADC.h"
+#include "LCD_I2C.h"
+#include "Loading_ani.h"
+#include "TWI.h"
+#include "UART.h"
 
 int main(void) {
     /*
