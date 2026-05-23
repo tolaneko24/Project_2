@@ -1,5 +1,6 @@
 #include "set_up.h"
 #include "Loading_ani.h"
+#include "LCD_I2C.h"
 
 // ================= GIAO DIỆN KHỞI ĐỘNG =================
 void LCD_Loading_Animation(void) {
