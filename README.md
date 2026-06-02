@@ -7,6 +7,6 @@
 ---
 - Sử dụng IDE platform.io ở extension trong VScode
 
-- Đoạn code Python dùng để đọc data trực tiếp thu được từ Vitual COM
+- Đoạn code Python dùng để đọc data trực tiếp thu được từ Vitual COM và vẽ biểu đổ run-time
 
 
