@@ -18,21 +18,28 @@
 
 // ================= CẤU HÌNH CHÂN =================
 // LM35 nối vào PA1 / ADC1
-#define LM35_ADC_CHANNEL 1
+#define LM35_ADC_CHANNEL        1
+#define GAS_ADC_CHANNEL         2
+#define MOISTURE_ADC_CHANNEL    3
 
-// Buzzer hoặc LED báo cháy nối PB0
-#define FIRE_ALARM_PORT PORTB
-#define FIRE_ALARM_DDR  DDRB
-#define FIRE_ALARM_PIN  PB0
+// Cảm biến ánh sáng / ngọn lửa (Kết nối Port B)
+#define LIGHT_SENSOR_PORT       PORTB
+#define LIGHT_SENSOR_PIN        PINB
+#define LIGHT_SENSOR_DDR        DDRB
+#define LIGHT_SENSOR_BIT        PB3
 
-// Ngưỡng báo cháy: 50.0 độ C
-// Vì ta dùng temp_x10, 50.0 C = 500
-#define FIRE_THRESHOLD_X10 330
+// Ampli LM386 phát nhạc báo cháy nối PD5 (Chân phần cứng OC1A của Timer1)
+#define FIRE_ALARM_PORT PORTD
+#define FIRE_ALARM_DDR  DDRD
+#define FIRE_ALARM_PIN  PD5
 
+// Ngưỡng báo cháy
+#define FIRE_THRESHOLD_X10      400  // 40.0 độ C
+#define GAS_DANGER_THRESHOLD    600  // Mức ADC cảnh báo nồng độ khí cháy
+#define GAS_WARMUP_TIME         120 // 120 chu kỳ 500ms = 60 giây
 // ================= MÁY TRẠNG THÁI HỮU HẠN =================
 typedef enum {
     STATE_LOADING,
-    STATE_ASK_PC,
     STATE_RUNNING
 } SystemState;
 
