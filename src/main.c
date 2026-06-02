@@ -105,7 +105,7 @@ int main(void) {
                 // Biến đếm x10 để hiển thị số nguyên nhằm lấy số sau dấu phẩy
                 uint16_t temp_x10 = (uint16_t)((adc_val * 2560UL + 512) / 1024);
 
-                // rích xuất phần nguyên và phần thập phân
+                // Trích xuất phần nguyên và phần thập phân
                 uint16_t temp_int = temp_x10 / 10;
                 uint16_t temp_dec = temp_x10 % 10;
                 
