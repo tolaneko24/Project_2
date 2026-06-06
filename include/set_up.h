@@ -37,6 +37,24 @@
 #define FIRE_THRESHOLD_X10      400  // 40.0 độ C
 #define GAS_DANGER_THRESHOLD    600  // Mức ADC cảnh báo nồng độ khí cháy
 #define GAS_WARMUP_TIME         120 // 120 chu kỳ 500ms = 60 giây
+
+//==================Định nghĩa các thao tác==================
+
+// Thao tác chỉ 1 bit
+#define set_bit(reg, bit) ((reg) |= (1 << (bit)))
+#define clear_bit(reg, bit) ((reg) &= ~(1 << (bit)))
+#define invert_bit(reg, bit) ((reg) ^= (1 << (bit)))
+#define check_bit(reg, bit) ((reg) & (1 << (bit)))
+
+// Thao tác nhiều bit -> MASK (mặt nạ)
+#define set_bit_mask(reg, mask) ((reg) |= (mask))
+#define clear_bit_mask(reg, mask) ((reg) &= ~(mask))
+#define invert_bit_mask(reg, mask) ((reg) ^= (mask))
+#define check_bit_mask(reg, mask) ((reg) & (mask))
+#define insert_mask(reg, old_mask, new_mask)  ((reg) = (((reg) & (old_mask)) | (new_mask)))
+#define write_reg(reg, value) ((reg) = (value)) 
+#define make_frame(nibble, rs)  (((nibble) & 0xF0) | ((rs) & 0x01) | MASK_BACKLIGHT)
+
 // ================= MÁY TRẠNG THÁI HỮU HẠN =================
 typedef enum {
     STATE_LOADING,
