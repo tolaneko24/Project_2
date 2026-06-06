@@ -3,28 +3,44 @@
 // ================= NGOẠI VI ÂM THANH (HARDWARE PWM - CTC MODE) =================
 const Note_t HappyBirthday_Melody[]= {
 
-    {NOTE_G4, 250}, {NOTE_G4, 250},
-    {NOTE_A4, 500}, {NOTE_G4, 500},
-    {NOTE_C5, 500}, {NOTE_B4, 1000},
-    {REST, 50},
-
-    {NOTE_G4, 250}, {NOTE_G4, 250},
-    {NOTE_A4, 500}, {NOTE_G4, 500},
-    {NOTE_D5, 500}, {NOTE_C5, 1000},
-    {REST, 50},
-
-    {NOTE_G4, 250}, {NOTE_G4, 250},
-    {NOTE_G5, 500}, {NOTE_E5, 500},
-    {NOTE_C5, 500}, {NOTE_B4, 500},
-    {NOTE_A4, 1000},
-    {REST, 50},
-
-    {NOTE_F5, 250}, {NOTE_F5, 250},
-    {NOTE_E5, 500}, {NOTE_C5, 500},
-    {NOTE_D5, 500}, {NOTE_C5, 1000},
-
-    {REST, 2000}
-
+// Khúc 1: "I do the same thing I told you that I never would"
+    {NOTE_B4, 176}, {NOTE_C5, 176}, {NOTE_G5, 176}, {NOTE_C5, 176}, 
+    {NOTE_B4, 176}, {NOTE_C5, 176}, {NOTE_G4, 353}, {NOTE_REST, 176},
+    
+    // Khúc 2: "I told you I'd change, even when I knew I never could"
+    {NOTE_B4, 176}, {NOTE_C5, 176}, {NOTE_G5, 176}, {NOTE_C5, 176}, 
+    {NOTE_B4, 176}, {NOTE_C5, 176}, {NOTE_G4, 176}, {NOTE_A4, 353}, {NOTE_REST, 176},
+    
+    // Khúc 3: "Know that I can't find nobody else as good as you"
+    {NOTE_B4, 176}, {NOTE_C5, 176}, {NOTE_G5, 176}, {NOTE_C5, 176}, 
+    {NOTE_B4, 176}, {NOTE_C5, 176}, {NOTE_G4, 353}, {NOTE_REST, 353},
+    
+    // Khúc 4: "I need you to stay, need you to stay, hey"
+    {NOTE_B4, 176}, {NOTE_C5, 176}, {NOTE_B4, 176}, {NOTE_G4, 176}, 
+    {NOTE_A4, 529}, {NOTE_REST, 353},
+    
+    // Khúc 5: Đoạn chuyển nhịp nhanh (Mật độ 88ms/nốt)
+    {NOTE_C5, 176}, {NOTE_C5, 176}, {NOTE_C5, 176}, {NOTE_G5, 529}, {NOTE_REST, 176},
+    {NOTE_B4, 88},  {NOTE_B4, 88},  {NOTE_B4, 88},  {NOTE_B4, 88},  
+    {NOTE_B4, 88},  {NOTE_B4, 88},  {NOTE_B4, 88},  
+    {NOTE_C5, 176}, {NOTE_C5, 353}, {NOTE_REST, 176},
+    
+    // Khúc 6: Lặp lại âm hình tuyến tính
+    {NOTE_C5, 176}, {NOTE_C5, 176}, {NOTE_C5, 176}, {NOTE_G5, 529}, {NOTE_REST, 176},
+    {NOTE_B4, 88},  {NOTE_B4, 88},  {NOTE_B4, 88},  {NOTE_B4, 88},  
+    {NOTE_B4, 88},  {NOTE_B4, 88},  {NOTE_B4, 88},  
+    {NOTE_C5, 176}, {NOTE_C5, 353}, {NOTE_REST, 176},
+    
+    // Khúc 7: Lặp lại âm hình tuyến tính
+    {NOTE_C5, 176}, {NOTE_C5, 176}, {NOTE_C5, 176}, {NOTE_G5, 529}, {NOTE_REST, 176},
+    {NOTE_B4, 88},  {NOTE_B4, 88},  {NOTE_B4, 88},  {NOTE_B4, 88},  
+    {NOTE_B4, 88},  {NOTE_B4, 88},  {NOTE_B4, 88},  
+    {NOTE_C5, 176}, {NOTE_C5, 353}, {NOTE_REST, 176},
+    
+    // Khúc 8: Đoạn Outro dồn nhịp
+    {NOTE_C5, 176}, {NOTE_C5, 176}, {NOTE_C5, 176}, {NOTE_G5, 529}, {NOTE_REST, 176},
+    {NOTE_C5, 176}, {NOTE_D5, 176}, {NOTE_D5, 176}, {NOTE_B5, 176}, 
+    {NOTE_G5, 176}, {NOTE_A5, 706}
 };
 
 #define MELODY_LENGTH (sizeof(HappyBirthday_Melody) / sizeof(Note_t))
@@ -52,7 +68,7 @@ void Delay_ms_Custom(uint16_t ms) {
 }
 
 void Play_Tone(uint16_t frequency, uint16_t duration) {
-    if (frequency == REST) {
+    if (frequency == NOTE_REST) {
         // Tắt bộ đếm Timer1 (Ngắt xung nhịp CS12:0 = 000)
         TCCR1B &= ~((1 << CS12) | (1 << CS11) | (1 << CS10));
         
@@ -103,7 +119,7 @@ void Play_Alarm_Melody(void) {
         Play_Tone(current_freq, current_dur);
         
         // Mô phỏng thông số NOTE_GAP_MS = 8 từ tập lệnh Python
-        if (current_freq != REST) {
+        if (current_freq != NOTE_REST) {
             Delay_ms_Custom(8); 
         }
     }
