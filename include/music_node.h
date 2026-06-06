@@ -4,7 +4,7 @@
 // TẦN SỐ CỦA CÁC NỐT NHẠC ĐƯỢC SỬ DỤNG
 
 //==========================
-#define REST     0   // Nốt lặng (Ngắt âm)
+#define NOTE_REST     0   // Nốt lặng (Ngắt âm)
 
 //==========================
 #define NOTE_B0      31
